@@ -27,7 +27,7 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error);
 });
 
-const ENDPOINT = 'http://virtualbox.lan:8330/api'
+const ENDPOINT = import.meta.env.VITE_APP_API_BASE_URL || 'http://virtualbox.lan:8330/api'
 export default {
   AUTH: ENDPOINT + '/auth',
 }
