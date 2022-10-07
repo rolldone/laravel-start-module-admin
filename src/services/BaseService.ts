@@ -2,6 +2,12 @@ import axios from 'axios';
 import 'nprogress/nprogress.css';
 import NProgress from 'nprogress';
 
+// Default axios config
+let token = window.localStorage.getItem("token");
+if (token != null) {
+  axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
+}
+
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent

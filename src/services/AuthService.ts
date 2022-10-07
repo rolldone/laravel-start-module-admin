@@ -18,21 +18,25 @@ export interface LoginType {
 }
 
 const AuthService = {
+  async getAuth() {
+    try {
+      let resData = await axios.get(BaseService.AUTH + '/get', {});
+      return resData.data;
+    } catch (ex) {
+      throw ex;
+    }
+  },
   async login(props: LoginType) {
     try {
-      try {
-        let resData = await axios({
-          method: "post",
-          url: BaseService.AUTH + '/login',
-          data: props,
-          headers: {
-            // 'Content-Type': `multipart/form-data;`,
-          }
-        })
-        return resData.data;
-      } catch (ex) {
-        throw ex;
-      }
+      let resData = await axios({
+        method: "post",
+        url: BaseService.AUTH + '/login',
+        data: props,
+        headers: {
+          // 'Content-Type': `multipart/form-data;`,
+        }
+      })
+      return resData.data;
     } catch (ex) {
       throw ex;
     }

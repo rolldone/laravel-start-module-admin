@@ -8,11 +8,7 @@ let token = ref(window.localStorage.getItem("token") || null);
 export default {
   setup() {
     onMounted(() => {
-      if (token.value == null) {
-        if(window.location.pathname.includes("/admin/auth") == false){
-          window.location.replace("/admin/auth/login");
-        }
-      }
+     
     })
     return {
       token
@@ -81,6 +77,43 @@ export default {
                   </span>
                   <span class="nav-link-title">
                     Users
+                  </span>
+                </a>
+                <div class="dropdown-menu" data-bs-popper="none">
+                  <div class="dropdown-menu-columns">
+                    <div class="dropdown-menu-column">
+                      <!-- <a class="dropdown-item" href="/dashboard/user">
+                    Users
+                  </a> -->
+                      <!-- <a class="dropdown-item" href="/dashboard/group">
+                    Groups Roles
+                  </a> -->
+                      <a class="dropdown-item" href="/admin/user/self">
+                        My Profile
+                      </a>
+                      <a class="dropdown-item" href="/admin/user/personal-access-token">
+                        Access Token
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
+                  data-bs-auto-close="false" role="button" aria-expanded="true">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <desc>Download more icon variants from https://tabler-icons.io/i/star</desc>
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                      </path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Grup Manajemen
                   </span>
                 </a>
                 <div class="dropdown-menu" data-bs-popper="none">
