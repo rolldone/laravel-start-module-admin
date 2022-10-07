@@ -8,7 +8,7 @@ let token = ref(window.localStorage.getItem("token") || null);
 export default {
   setup() {
     onMounted(() => {
-     
+
     })
     return {
       token
@@ -125,11 +125,14 @@ export default {
                       <!-- <a class="dropdown-item" href="/dashboard/group">
                     Groups Roles
                   </a> -->
-                      <a class="dropdown-item" href="/admin/user/self">
-                        My Profile
+                      <a class="dropdown-item" href="/admin/grup-manajemen/pegawai">
+                        Pegawai
                       </a>
-                      <a class="dropdown-item" href="/admin/user/personal-access-token">
-                        Access Token
+                      <a class="dropdown-item" href="/admin/grup-manajemen/jabatan">
+                        Jabatan
+                      </a>
+                      <a class="dropdown-item" href="/admin/grup-manajemen/divisi">
+                        Divisi
                       </a>
                     </div>
                   </div>

@@ -3,3 +3,7 @@
     
   }
 </script>
+
+<template>
+  <H1>Divisi</H1>
+</template>

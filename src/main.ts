@@ -13,6 +13,16 @@ import Pegawai from './pegawai/Pegawai.vue';
 import PegawaiFNew from './pegawai/PegawaiFNew.vue';
 import PegawaiFUpdate from './pegawai/PegawaiFUpdate.vue';
 
+// Jabatan
+import Jabatan from './jabatan/Jabatan.vue';
+import JabatanFNew from './jabatan/JabatanFNew.vue';
+import JabatanFUpdate from './jabatan/JabatanFUpdate.vue';
+
+// Divisi
+import Divisi from './divisi/Divisi.vue';
+import DivisiFNew from './divisi/DivisiFNew.vue';
+import DivisiFUpdate from './divisi/DivisiFUpdate.vue';
+
 // Auth
 import Login from './auth/Login.vue';
 import Logout from './auth/Logout.vue';
@@ -36,12 +46,12 @@ const routes = [
   { path: '/grup-manajemen/pegawai', component: Pegawai },
   { path: '/grup-manajemen/pegawai/new', component: PegawaiFNew },
   { path: '/grup-manajemen/pegawai/:id/view', component: PegawaiFUpdate },
-  { path: '/grup-manajemen/jabatan', component: Pegawai },
-  { path: '/grup-manajemen/jabatan/new', component: PegawaiFNew },
-  { path: '/grup-manajemen/jabatan/:id/view', component: PegawaiFUpdate },
-  { path: '/grup-manajemen/divisi', component: Pegawai },
-  { path: '/grup-manajemen/divisi/new', component: PegawaiFNew },
-  { path: '/grup-manajemen/divisi/:id/view', component: PegawaiFUpdate },
+  { path: '/grup-manajemen/jabatan', component: Jabatan },
+  { path: '/grup-manajemen/jabatan/new', component: JabatanFNew },
+  { path: '/grup-manajemen/jabatan/:id/view', component: JabatanFUpdate },
+  { path: '/grup-manajemen/divisi', component: Divisi },
+  { path: '/grup-manajemen/divisi/new', component: DivisiFNew },
+  { path: '/grup-manajemen/divisi/:id/view', component: DivisiFUpdate },
 ]
 
 // 3. Create the router instance and pass the `routes` option

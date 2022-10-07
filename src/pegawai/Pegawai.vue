@@ -3,6 +3,7 @@
 
   }
 </script>
+
 <template>
-  
+  <H1>Pegawai</H1>
 </template>
