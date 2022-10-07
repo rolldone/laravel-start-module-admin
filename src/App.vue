@@ -1,0 +1,172 @@
+<script lang="ts">
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import { ref } from 'vue';
+import HelloWorld from './components/HelloWorld.vue'
+let token = ref(window.localStorage.getItem("token") || null);
+export default {
+  setup() {
+    return {
+      token
+    }
+  }
+}
+</script>
+
+<template>
+  <template v-if="token == null">
+    <router-view></router-view>
+  </template>
+  <template v-if="token != null">
+    <div class="page">
+      <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <h1 class="navbar-brand navbar-brand-autodark">
+            <a href=".">
+              <!-- <img src="./static/logo-white.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image"> -->
+              <svg xmlns="http://www.w3.org/2000/svg" style="width: 50px; height: 50px;"
+                class="icon icon-tabler icon-tabler-terminal" width="24" height="24" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <desc>Download more icon variants from https://tabler-icons.io/i/terminal</desc>
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M5 7l5 5l-5 5"></path>
+                <line x1="12" y1="19" x2="19" y2="19"></line>
+              </svg>
+            </a>
+          </h1>
+          <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="navbar-nav pt-lg-3">
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Home
+                  </span>
+                </a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
+                  data-bs-auto-close="false" role="button" aria-expanded="true">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <desc>Download more icon variants from https://tabler-icons.io/i/star</desc>
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path
+                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                      </path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Users
+                  </span>
+                </a>
+                <div class="dropdown-menu" data-bs-popper="none">
+                  <div class="dropdown-menu-columns">
+                    <div class="dropdown-menu-column">
+                      <!-- <a class="dropdown-item" href="/dashboard/user">
+                    Users
+                  </a> -->
+                      <!-- <a class="dropdown-item" href="/dashboard/group">
+                    Groups Roles
+                  </a> -->
+                      <a class="dropdown-item" href="/admin/user/self">
+                        My Profile
+                      </a>
+                      <a class="dropdown-item" href="/admin/user/personal-access-token">
+                        Access Token
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item" style="display: none;">
+                <a class="nav-link" href="./docs/index.html">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/file-text -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                      <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                      <line x1="9" y1="9" x2="10" y2="9"></line>
+                      <line x1="9" y1="13" x2="15" y2="13"></line>
+                      <line x1="9" y1="17" x2="15" y2="17"></line>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Documentation
+                  </span>
+                </a>
+              </li>
+
+              <li class="nav-item" style="display: none;">
+                <a class="nav-link" href="./changelog.html">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/file-plus -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                      <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                      <line x1="12" y1="11" x2="12" y2="17"></line>
+                      <line x1="9" y1="14" x2="15" y2="14"></line>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Changelog
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/auth/logout">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/file-plus -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="24"
+                      height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <desc>Download more icon variants from https://tabler-icons.io/i/logout</desc>
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+                      <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Logout
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <div class="page-wrapper" id="index-body">
+        
+        <router-view></router-view>
+        <!-- <h4 style="text-align: center; margin: 60px;">
+          Loading<span class="animated-dots"></span>
+        </h4> -->
+      </div>
+    </div>
+  </template>
+</template>
+
+
+
+<style scoped>
+
+</style>
