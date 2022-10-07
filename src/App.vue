@@ -1,11 +1,17 @@
 <script lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import HelloWorld from './components/HelloWorld.vue'
 let token = ref(window.localStorage.getItem("token") || null);
+
 export default {
   setup() {
+    onMounted(() => {
+      if (token.value == null) {
+        window.location.replace("/admin/auth/login");
+      }
+    })
     return {
       token
     }
@@ -155,7 +161,7 @@ export default {
         </div>
       </aside>
       <div class="page-wrapper" id="index-body">
-        
+
         <router-view></router-view>
         <!-- <h4 style="text-align: center; margin: 60px;">
           Loading<span class="animated-dots"></span>
