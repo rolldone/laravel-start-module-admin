@@ -9,7 +9,9 @@ export default {
   setup() {
     onMounted(() => {
       if (token.value == null) {
-        window.location.replace("/admin/auth/login");
+        if(window.location.pathname.includes("/admin/auth") == false){
+          window.location.replace("/admin/auth/login");
+        }
       }
     })
     return {
