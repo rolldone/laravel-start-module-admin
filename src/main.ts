@@ -3,6 +3,13 @@ import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue'
 
+declare global {
+  interface Window {
+    bootstrap: any
+  }
+}
+
+
 // Style and theme
 import '@tabler/core/dist/css/tabler.min.css'
 import '@tabler/core/dist/js/tabler.min.js'

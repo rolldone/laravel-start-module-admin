@@ -128,11 +128,11 @@ export default {
                       <a class="dropdown-item" href="/admin/grup-manajemen/pegawai">
                         Pegawai
                       </a>
-                      <a class="dropdown-item" href="/admin/grup-manajemen/jabatan">
-                        Jabatan
-                      </a>
                       <a class="dropdown-item" href="/admin/grup-manajemen/divisi">
                         Divisi
+                      </a>
+                      <a class="dropdown-item" href="/admin/grup-manajemen/jabatan">
+                        Jabatan
                       </a>
                     </div>
                   </div>

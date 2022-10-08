@@ -1,6 +1,26 @@
 <script lang="ts">
-export default {
+import { PegawaiInterface } from 'src/services/PegawaiService';
+import { onMounted, ref } from 'vue';
+import GetEmployees from './functions/GetEmployees';
 
+let pegawai_datas = ref<Array<PegawaiInterface>>([]);
+
+const setEmployees = (props: any) => {
+  if (props == null) {
+    return null;
+  }
+  pegawai_datas.value = props.return;
+}
+
+export default {
+  setup(props) {
+    onMounted(async () => {
+      setEmployees(await GetEmployees());
+    })
+    return {
+      pegawai_datas
+    }
+  }
 }
 </script>
 
@@ -18,7 +38,7 @@ export default {
               <span class="d-none d-sm-inline">
                 <a class="btn btn-white" href="/dashboard/pipeline">Manage Pipelines</a>
               </span>
-              <a class="btn btn-primary d-none d-sm-inline-block" href="/dashboard/project/new"> <svg class="icon"
+              <a class="btn btn-primary d-none d-sm-inline-block" href="/grup-manajemen/pegawai/new"> <svg class="icon"
                   xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                   stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -42,85 +62,33 @@ export default {
                   <thead>
                     <tr>
                       <th>Nama</th>
-                      <th>Field 2</th>
-                      <th>Jabatan</th>
+                      <th>Email & No Telp</th>
+                      <th>Status</th>
                       <th class="w-1"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr v-for="item in pegawai_datas">
                       <td data-label="Name">
                         <div class="d-flex py-1 align-items-center"><span
-                            style="background-image: url(./static/avatars/010m.jpg);" class="avatar me-2">3</span>
+                            style="background-image: url(./static/avatars/010m.jpg);" class="avatar me-2">{{item.id}}</span>
                           <div class="flex-fill">
-                            <div class="font-weight-medium">Testing Demo</div>
+                            <div class="font-weight-medium">{{item.first_name}} {{item.last_name}}</div>
                             <div class="text-muted"><a class="text-reset" href="#"></a></div>
                           </div>
                         </div>
                       </td>
                       <td data-label="Title">
-                        <div>1 Pipelines</div>
-                        <div class="text-muted">1 Pipelines Items</div>
+                        <div>{{item.email}}</div>
+                        <div class="text-muted">{{item.phone_number}}</div>
                       </td>
-                      <td class="text-muted" data-label="Role">User</td>
+                      <td class="text-muted" data-label="Role">{{item.status == 1 ?"Active":"Suspend"}}</td>
                       <td>
                         <div class="btn-list flex-nowrap"><a class="btn"
                             href="/dashboard/pipeline?project_id=3">Analisa</a>
                           <div class="dropdown"><button class="btn dropdown-toggle align-text-top"
                               data-bs-toggle="dropdown">Actions</button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Edit</a> <a
-                                class="dropdown-item" href="#">Suspend</a></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data-label="Name">
-                        <div class="d-flex py-1 align-items-center"><span
-                            style="background-image: url(./static/avatars/010m.jpg);" class="avatar me-2">2</span>
-                          <div class="flex-fill">
-                            <div class="font-weight-medium">Project Own Jagoan Server</div>
-                            <div class="text-muted"><a class="text-reset" href="#"></a></div>
-                          </div>
-                        </div>
-                      </td>
-                      <td data-label="Title">
-                        <div>1 Pipelines</div>
-                        <div class="text-muted">1 Pipelines Items</div>
-                      </td>
-                      <td class="text-muted" data-label="Role">User</td>
-                      <td>
-                        <div class="btn-list flex-nowrap"><a class="btn"
-                            href="/dashboard/pipeline?project_id=2">Analisa</a>
-                          <div class="dropdown"><button class="btn dropdown-toggle align-text-top"
-                              data-bs-toggle="dropdown">Actions</button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Edit</a> <a
-                                class="dropdown-item" href="#">Suspend</a></div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data-label="Name">
-                        <div class="d-flex py-1 align-items-center"><span
-                            style="background-image: url(./static/avatars/010m.jpg);" class="avatar me-2">1</span>
-                          <div class="flex-fill">
-                            <div class="font-weight-medium">Trading Check</div>
-                            <div class="text-muted"><a class="text-reset" href="#"></a></div>
-                          </div>
-                        </div>
-                      </td>
-                      <td data-label="Title">
-                        <div>2 Pipelines</div>
-                        <div class="text-muted">5 Pipelines Items</div>
-                      </td>
-                      <td class="text-muted" data-label="Role">User</td>
-                      <td>
-                        <div class="btn-list flex-nowrap"><a class="btn"
-                            href="/dashboard/pipeline?project_id=1">Analisa</a>
-                          <div class="dropdown"><button class="btn dropdown-toggle align-text-top"
-                              data-bs-toggle="dropdown">Actions</button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Edit</a> <a
+                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"  :href="'/admin/grup-manajemen/pegawai/'+item.id+'/view'">Edit</a> <a
                                 class="dropdown-item" href="#">Suspend</a></div>
                           </div>
                         </div>

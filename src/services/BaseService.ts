@@ -36,4 +36,8 @@ axios.interceptors.response.use(function (response) {
 const ENDPOINT = import.meta.env.VITE_APP_API_BASE_URL || 'http://virtualbox.lan:8330/api'
 export default {
   AUTH: ENDPOINT + '/auth',
+  PEGAWAI: ENDPOINT + "/employee",
+  DIVISI: ENDPOINT + "/groupmanagement/division",
+  POSITION: ENDPOINT + "/groupmanagement/position",
+  COMPANY: ENDPOINT + "/groupmanagement/group"
 }
