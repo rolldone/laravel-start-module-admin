@@ -95,7 +95,7 @@ export default {
                       <td class="text-muted" data-label="Role">{{item.is_enable==true?"Active":"Suspend"}}</td>
                       <td>
                         <div class="btn-list flex-nowrap">
-                          <a class="btn" href="/dashboard/pipeline?project_id=3">Analisa</a>
+                          <a class="btn" href="/dashboard/pipeline?project_id=3">Sub Divisi</a>
                           <div class="dropdown">
                             <button class="btn dropdown-toggle align-text-top"
                               data-bs-toggle="dropdown">Actions</button>
