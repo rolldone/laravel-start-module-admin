@@ -8,7 +8,7 @@ const STATUS = {
   SUSPEND: 0
 }
 
-export interface PegawaiInterface {
+export interface EmployeeInterface {
   id?: number
   first_name?: string
   last_name?: string
@@ -22,13 +22,13 @@ export interface PegawaiInterface {
   deleted_at?: string
 }
 
-export interface PegawaiServiceInterface extends PegawaiInterface {
+export interface EmployeeServiceInterface extends EmployeeInterface {
 
 }
 
 const PegawaiService = {
   STATUS,
-  async add(props: PegawaiInterface) {
+  async add(props: EmployeeInterface) {
     try {
       let resData = await axios({
         method: "post",
@@ -43,7 +43,7 @@ const PegawaiService = {
       throw ex;
     }
   },
-  async update(props: PegawaiInterface) {
+  async update(props: EmployeeInterface) {
     try {
       let resData = await axios({
         method: "POST",
@@ -67,7 +67,7 @@ const PegawaiService = {
       throw ex;
     }
   },
-  async gets(props: PegawaiServiceInterface) {
+  async gets(props: EmployeeServiceInterface) {
     try {
       let query = SmartUrlSearchParams(props);
       let resData = await axios({

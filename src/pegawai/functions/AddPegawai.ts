@@ -1,6 +1,6 @@
-import PegawaiService, { PegawaiInterface } from "src/services/PegawaiService";
+import PegawaiService, { EmployeeInterface } from "src/services/EmployeeService";
 
-const AddPegawai = async (props: PegawaiInterface) => {
+const AddPegawai = async (props: EmployeeInterface) => {
   try {
     let resData = await PegawaiService.add(props);
     return resData;

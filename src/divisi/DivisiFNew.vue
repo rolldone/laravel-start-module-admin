@@ -1,14 +1,14 @@
 <script lang="ts">
-import DivisiService, { DivisiInterface } from 'src/services/DivisiService';
+import DivisiService, { DivisionInterface } from 'src/services/DivisionService';
 import { ref } from 'vue';
 import SelectParentModal from './select_parent_modal/SelectParentModal.vue';
 
-let form_data = ref<DivisiInterface>({
+let form_data = ref<DivisionInterface>({
   is_enable: false,
   name: ""
 })
 
-let select_divisi = ref<DivisiInterface>({});
+let select_divisi = ref<DivisionInterface>({});
 
 let modalParentDialog = ref<InstanceType<typeof SelectParentModal>>();
 

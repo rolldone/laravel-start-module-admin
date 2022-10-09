@@ -2,28 +2,27 @@ import axios from "axios"
 import SmartUrlSearchParams from "src/functions/SmartUrlSearchParams"
 import BaseService from "./BaseService"
 
-export interface DivisiInterface {
+export interface PositionInterface {
   id?: number
   name?: string
   is_enable?: boolean
-  parent_id?: number
-  parent_division?: typeof self
-  divisions?: Array<typeof self>
+  division_id?: number
+  division?: any
   created_at?: any
   updated_at?: any
   deleted_at?: any
 }
 
-export interface DivisiServiceInterface extends DivisiInterface {
+export interface PositionServiceInterface extends PositionInterface {
 
 }
 
-const DivisiService = {
-  async add(props: DivisiInterface) {
+const PositionService = {
+  async add(props: PositionInterface) {
     try {
       let resData = await axios({
         method: "post",
-        url: BaseService.DIVISI + '/add',
+        url: BaseService.POSITION + '/add',
         data: props,
         headers: {
           // 'Content-Type': `multipart/form-data;`,
@@ -34,15 +33,13 @@ const DivisiService = {
       throw ex;
     }
   },
-  async update(props: DivisiInterface) {
+  async update(props: PositionInterface) {
     try {
       let resData = await axios({
-        method: "post",
-        url: BaseService.DIVISI + '/update',
+        method: "POST",
+        url: BaseService.POSITION + "/update",
         data: props,
-        headers: {
-          // 'Content-Type': `multipart/form-data;`,
-        }
+        headers: {}
       });
       return resData.data;
     } catch (ex) {
@@ -53,30 +50,30 @@ const DivisiService = {
     try {
       let resData = await axios({
         method: "GET",
-        url: `${BaseService.DIVISI}/${id}/view`
+        url: `${BaseService.POSITION}/${id}/view`
       });
       return resData.data;
     } catch (ex) {
       throw ex;
     }
   },
-  async gets(props: DivisiServiceInterface) {
+  async gets(props: PositionServiceInterface) {
     try {
       let query = SmartUrlSearchParams(props);
       let resData = await axios({
         method: "GET",
-        url: `${BaseService.DIVISI}?${query}`
+        url: `${BaseService.POSITION}?${query}`
       });
       return resData.data;
     } catch (ex) {
       throw ex;
     }
   },
-  async deletes(ids: Array<number>) {
+  async deleteByIds(ids: Array<number>) {
     try {
       let resData = await axios({
         method: "POST",
-        url: `${BaseService.DIVISI}/delete`,
+        url: `${BaseService.POSITION}/delete`,
         data: {
           ids
         }
@@ -88,4 +85,4 @@ const DivisiService = {
   }
 }
 
-export default DivisiService;
+export default PositionService;

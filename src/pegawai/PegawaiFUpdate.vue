@@ -1,10 +1,10 @@
 <script lang="ts">
-import PegawaiService, { PegawaiInterface } from 'src/services/PegawaiService';
+import PegawaiService, { EmployeeInterface } from 'src/services/EmployeeService';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import PegawaiFNewVue from './PegawaiFNew.vue';
 
-let form_data = ref<PegawaiInterface>({
+let form_data = ref<EmployeeInterface>({
   first_name: "",
   last_name: "",
   email: "",

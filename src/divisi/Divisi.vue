@@ -1,9 +1,9 @@
 <script lang="ts">
 import { onMounted, ref } from 'vue';
-import DivisiService, { DivisiInterface } from 'src/services/DivisiService';
+import DivisiService, { DivisionInterface } from 'src/services/DivisionService';
 import SafeJson from 'src/functions/SafeJson';
 
-let divisi_datas = ref<Array<DivisiInterface>>([]);
+let divisi_datas = ref<Array<DivisionInterface>>([]);
 
 export const getDivisions = async () => {
   try {

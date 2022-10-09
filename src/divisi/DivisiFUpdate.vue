@@ -1,12 +1,12 @@
 <script lang="ts">
-import DivisiService, { DivisiInterface } from 'src/services/DivisiService';
+import DivisiService, { DivisionInterface } from 'src/services/DivisionService';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import DivisiFNewVue from './DivisiFNew.vue';
 import SelectParentModalVue from './select_parent_modal/SelectParentModal.vue';
 
-let form_data = ref<DivisiInterface>({});
-let select_divisi = ref<DivisiInterface>({});
+let form_data = ref<DivisionInterface>({});
+let select_divisi = ref<DivisionInterface>({});
 let modalParentDialog = ref<InstanceType<typeof SelectParentModalVue>>();
 
 const setDivision = async (props: any) => {

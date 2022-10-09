@@ -2,12 +2,12 @@
 import { ref } from 'vue';
 import CreateSimpleId from 'src/functions/CreateSimpleId';
 import { getDivisions } from '../Divisi.vue';
-import { DivisiInterface } from 'src/services/DivisiService';
+import { DivisionInterface } from 'src/services/DivisionService';
 import SafeJson from 'src/functions/SafeJson';
 
 let id = ref(CreateSimpleId(10));
 
-let divisi_datas = ref<Array<DivisiInterface>>([]);
+let divisi_datas = ref<Array<DivisionInterface>>([]);
 
 let myModal: any = null;
 
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     async show(props: any) {
-      let _id_element = id.value
+      let _id_element = this.id
       var _trrr = document.getElementById(_id_element);
       myModal = new window.bootstrap.Modal(_trrr, {
         backdrop: 'static',
@@ -39,7 +39,7 @@ export default {
       _trrr.addEventListener("hidden.bs.modal", (event: any) => {
         // do something...
         if (event.target.id == _id_element) {
-          
+
         }
       });
       myModal.show();
@@ -49,7 +49,7 @@ export default {
       switch (action) {
         case 'SELECT_PARENT_DIVISION':
           e.preventDefault();
-          let _divisi_item = divisi_datas.value[props.index];
+          let _divisi_item = this.divisi_datas[props.index];
           this.onlistener(_divisi_item, e);
           break;
       }

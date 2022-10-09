@@ -1,4 +1,4 @@
-import PegawaiService from "src/services/PegawaiService";
+import PegawaiService from "src/services/EmployeeService";
 
 const GetEmployees = async () => {
   try{

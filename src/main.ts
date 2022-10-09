@@ -30,6 +30,11 @@ import Divisi from './divisi/Divisi.vue';
 import DivisiFNew from './divisi/DivisiFNew.vue';
 import DivisiFUpdate from './divisi/DivisiFUpdate.vue';
 
+// Group
+import Group from './group/Group.vue';
+import GroupFNew from './group/GroupFNew.vue';
+import GroupFUpdate from './group/GroupFUpdate.vue';
+
 // Auth
 import Login from './auth/Login.vue';
 import Logout from './auth/Logout.vue';
@@ -40,6 +45,14 @@ import ForgotPassword from './auth/ForgotPassword.vue';
 import Dashboard from './dashboard/Dashboard.vue';
 import AuthService from './services/AuthService';
 
+// Operasional Pegawai
+import OperasionalPegawaiPegawai from './operasional_pegawai/pegawai/Pegawai.vue';
+import OperasionalPegawaiJabatan from './operasional_pegawai/jabatan/Jabatan.vue';
+import OperasionalPegawaiKehadiran from './operasional_pegawai/kehadiran/Kehadiran.vue';
+import OperasionalPegawaiMutasi from './operasional_pegawai/mutasi/Mutasi.vue';
+import CompanyCheckMiddleware from './middleware/CompanyCheckMiddleware';
+import Middleware from './middleware/Middleware';
+
 // 2. Define some routes
 // Each route should map to a component.
 // We'll talk about nested routes later.
@@ -49,6 +62,7 @@ const routes = [
   { path: '/auth/register', component: Register },
   { path: '/auth/logout', component: Logout },
   { path: '/auth/forgot-password', component: ForgotPassword },
+
   // Grup Manajemen
   { path: '/grup-manajemen/pegawai', component: Pegawai },
   { path: '/grup-manajemen/pegawai/new', component: PegawaiFNew },
@@ -59,6 +73,25 @@ const routes = [
   { path: '/grup-manajemen/divisi', component: Divisi },
   { path: '/grup-manajemen/divisi/new', component: DivisiFNew },
   { path: '/grup-manajemen/divisi/:id/view', component: DivisiFUpdate },
+  { path: '/grup-manajemen/group', component: Group },
+  { path: '/grup-manajemen/group/new', component: GroupFNew },
+  { path: '/grup-manajemen/group/:id/view', component: GroupFUpdate },
+
+  // Operasional Pegawai
+  {
+    path: '/operasional-pegawai/pegawai',
+    component: OperasionalPegawaiPegawai,
+    name: "operasional.pegawai",
+    meta: {
+      middleware: []
+    }
+  },
+  {
+    path: '/operasional-pegawai/jabatan',
+    component: OperasionalPegawaiJabatan,
+    name: "operasional.jabatan",
+    beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
+  },
 ]
 
 // 3. Create the router instance and pass the `routes` option

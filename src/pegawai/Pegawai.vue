@@ -1,9 +1,9 @@
 <script lang="ts">
-import { PegawaiInterface } from 'src/services/PegawaiService';
+import { EmployeeInterface } from 'src/services/EmployeeService';
 import { onMounted, ref } from 'vue';
 import GetEmployees from './functions/GetEmployees';
 
-let pegawai_datas = ref<Array<PegawaiInterface>>([]);
+let pegawai_datas = ref<Array<EmployeeInterface>>([]);
 
 const setEmployees = (props: any) => {
   if (props == null) {
@@ -35,9 +35,9 @@ export default {
           </div>
           <div class="col-12 col-md-auto ms-auto d-print-none">
             <div class="btn-list">
-              <span class="d-none d-sm-inline">
+              <!-- <span class="d-none d-sm-inline">
                 <a class="btn btn-white" href="/dashboard/pipeline">Manage Pipelines</a>
-              </span>
+              </span> -->
               <a class="btn btn-primary d-none d-sm-inline-block" href="/grup-manajemen/pegawai/new"> <svg class="icon"
                   xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                   stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

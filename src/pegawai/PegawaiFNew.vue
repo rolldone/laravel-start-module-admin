@@ -1,9 +1,9 @@
 <script lang="ts">
-import { PegawaiInterface } from 'src/services/PegawaiService';
+import { EmployeeInterface } from 'src/services/EmployeeService';
 import { ref } from 'vue';
 import AddPegawai from './functions/AddPegawai';
 
-let form_data = ref<PegawaiInterface>({
+let form_data = ref<EmployeeInterface>({
   id: 0,
   user_id: 0,
   first_name: "",

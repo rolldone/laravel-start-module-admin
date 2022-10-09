@@ -1,20 +1,31 @@
 <script lang="ts">
-import { PositionInterface } from 'src/services/PositionService';
-import { onMounted, ref } from 'vue';
-import GetPositions from './functions/GetPositions';
+import GroupService, { GroupInterface } from 'src/services/GroupService';
 
-let position_datas = ref<Array<PositionInterface>>([]);
-const setPositions = (props: any) => {
-  if (props == null) return null;
-  position_datas.value = props.return;
+export interface DataObjectInterface {
+  group_datas: Array<GroupInterface>
 }
+
 export default {
-  setup() {
-    onMounted(async () => {
-      setPositions(await GetPositions({}));
-    })
+  data(): DataObjectInterface {
     return {
-      position_datas
+      group_datas: []
+    }
+  },
+  async mounted() {
+    this.setGroups(await this.getGroups());
+  },
+  methods: {
+    setGroups(props: any) {
+      if (props == null) return null;
+      this.group_datas = props.return;
+    },
+    async getGroups() {
+      try {
+        let resData = await GroupService.gets({});
+        return resData;
+      } catch (ex) {
+        console.error("getGroups - ex :: ", ex);
+      }
     }
   }
 }
@@ -27,21 +38,21 @@ export default {
         <div class="row g-2 align-items-center">
           <div class="col">
             <div class="page-pretitle">Grup Manajemen</div>
-            <h2 class="page-title">Daftar Jabatan</h2>
+            <h2 class="page-title">Daftar Group Perusahaan</h2>
           </div>
           <div class="col-12 col-md-auto ms-auto d-print-none">
             <div class="btn-list">
               <!-- <span class="d-none d-sm-inline">
                 <a class="btn btn-white" href="/dashboard/pipeline">Manage Pipelines</a>
               </span> -->
-              <a class="btn btn-primary d-none d-sm-inline-block" href="/grup-manajemen/jabatan/new"> <svg class="icon"
-                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                  stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <a class="btn btn-primary d-none d-sm-inline-block" href="/admin/grup-manajemen/group/new"> <svg
+                  class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                  stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <line x1="12" y1="5" x2="12" y2="19"></line>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
-                Tambah Jabatan
+                Tambah Group Perusahaan
               </a>
             </div>
           </div>
@@ -58,13 +69,13 @@ export default {
                   <thead>
                     <tr>
                       <th>Nama</th>
-                      <th>Divisi</th>
+                      <th>Email & No Telp</th>
                       <th>Status</th>
                       <th class="w-1"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="item in position_datas">
+                    <tr v-for="item in group_datas">
                       <td data-label="Name">
                         <div class="d-flex py-1 align-items-center"><span
                             style="background-image: url(./static/avatars/010m.jpg);"
@@ -76,17 +87,18 @@ export default {
                         </div>
                       </td>
                       <td data-label="Title">
-                        <div>{{item.division.name}}</div>
+                        <div></div>
                         <div class="text-muted"></div>
                       </td>
                       <td class="text-muted" data-label="Role">{{item.is_enable == true ? "Active":"Suspend"}}</td>
                       <td>
                         <div class="btn-list flex-nowrap">
+                          <!-- <a class="btn" href="/dashboard/pipeline?project_id=3">Analisa</a> -->
                           <div class="dropdown">
                             <button class="btn dropdown-toggle align-text-top"
                               data-bs-toggle="dropdown">Actions</button>
                             <div class="dropdown-menu dropdown-menu-end">
-                              <a class="dropdown-item" :href="'/admin/grup-manajemen/jabatan/'+item.id+'/view'">Edit</a>
+                              <a class="dropdown-item" :href="'/admin/grup-manajemen/group/'+item.id+'/view'">Edit</a>
                               <a class="dropdown-item" href="#">Suspend</a>
                             </div>
                           </div>
