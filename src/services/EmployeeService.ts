@@ -23,7 +23,7 @@ export interface EmployeeInterface {
 }
 
 export interface EmployeeServiceInterface extends EmployeeInterface {
-
+  group_id?: number
 }
 
 const PegawaiService = {
@@ -75,6 +75,15 @@ const PegawaiService = {
         url: `${BaseService.PEGAWAI}?${query}`
       });
       return resData.data;
+    } catch (ex) {
+      throw ex;
+    }
+  },
+  async getsByGroupId(group_id: number) {
+    try {
+      return this.gets({
+        group_id: group_id
+      });
     } catch (ex) {
       throw ex;
     }

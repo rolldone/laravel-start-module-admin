@@ -57,7 +57,6 @@ const AuthService = {
       throw ex;
     }
   },
-
 }
 
 export default AuthService;

@@ -213,7 +213,7 @@ export default {
                       <a class="dropdown-item" href="#">
                         Pengguna Akses
                       </a>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="/admin/grup-akses/user-portal">
                         User Portal Akses
                       </a>
                     </div>

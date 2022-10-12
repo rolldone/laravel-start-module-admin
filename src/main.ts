@@ -53,6 +53,10 @@ import OperasionalPegawaiMutasi from './operasional_pegawai/mutasi/Mutasi.vue';
 import CompanyCheckMiddleware from './middleware/CompanyCheckMiddleware';
 import Middleware from './middleware/Middleware';
 
+// Grup akses
+import UserPortals from './grup_akses/user_portal/UserPortals.vue';
+import UserPortalFNew from './grup_akses/user_portal/UserPortalFNew.vue';
+
 // 2. Define some routes
 // Each route should map to a component.
 // We'll talk about nested routes later.
@@ -92,6 +96,20 @@ const routes = [
     name: "operasional.jabatan",
     beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
   },
+
+  // Grup AKses
+  {
+    path: '/grup-akses/user-portal',
+    component: UserPortals,
+    name: "grup_akses.user_portal.portals",
+    beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
+  },
+  {
+    path: '/grup-akses/user-portal/new',
+    component: UserPortalFNew,
+    name: "grup_akses.user_portal.new",
+    beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
+  }
 ]
 
 // 3. Create the router instance and pass the `routes` option

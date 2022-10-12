@@ -39,5 +39,7 @@ export default {
   PEGAWAI: ENDPOINT + "/employee",
   DIVISI: ENDPOINT + "/groupmanagement/division",
   POSITION: ENDPOINT + "/groupmanagement/position",
-  COMPANY: ENDPOINT + "/groupmanagement/group"
+  COMPANY: ENDPOINT + "/groupmanagement/group",
+  PORTAL: ENDPOINT + "/groupmanagement/portal",
+  PORTAL_SELECTED: ENDPOINT + "groupmanagement/portal-selected"
 }

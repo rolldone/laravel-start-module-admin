@@ -80,6 +80,31 @@ const GroupService = {
     } catch (ex) {
       throw ex;
     }
+  },
+  async selectCompany(id: number) {
+    try {
+      let resData = await axios({
+        method: "POST",
+        url: `${BaseService.COMPANY}/select-company`,
+        data: {
+          id
+        }
+      })
+      return resData.data;
+    } catch (ex) {
+      throw ex;
+    }
+  },
+  async getCurrentSetCompany() {
+    try {
+      let resData = await axios({
+        method: "GET",
+        url: `${BaseService.COMPANY}/current-company`
+      });
+      return resData.data;
+    } catch (ex) {
+      throw ex;
+    }
   }
 }
 
