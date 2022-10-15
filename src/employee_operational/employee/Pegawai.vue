@@ -1,24 +1,14 @@
 <script lang="ts">
 import { EmployeeInterface } from 'src/services/EmployeeService';
 import { onMounted, ref } from 'vue';
-import GetEmployees from './functions/GetEmployees';
 
-let pegawai_datas = ref<Array<EmployeeInterface>>([]);
-
-const setEmployees = (props: any) => {
-  if (props == null) {
-    return null;
-  }
-  pegawai_datas.value = props.return;
+interface DataObject {
+  pegawai_datas: Array<EmployeeInterface>
 }
-
 export default {
-  setup(props) {
-    onMounted(async () => {
-      setEmployees(await GetEmployees());
-    })
+  data(): DataObject {
     return {
-      pegawai_datas
+      pegawai_datas: []
     }
   }
 }
@@ -30,22 +20,27 @@ export default {
       <div class="page-header d-print-none">
         <div class="row g-2 align-items-center">
           <div class="col">
-            <div class="page-pretitle">Management Group</div>
-            <h2 class="page-title">Global Employee List</h2>
+            <div class="page-pretitle">Employee Operational</div>
+            <h2 class="page-title">Employee Management</h2>
           </div>
           <div class="col-12 col-md-auto ms-auto d-print-none">
             <div class="btn-list">
               <!-- <span class="d-none d-sm-inline">
                 <a class="btn btn-white" href="/dashboard/pipeline">Manage Pipelines</a>
               </span> -->
-              <a class="btn btn-primary d-none d-sm-inline-block" href="/grup-manajemen/pegawai/new"> <svg class="icon"
-                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                  stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <a class="btn btn-primary d-none d-sm-inline-block" href="/operasional-pegawai/pegawai/new">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plug-connected" width="24"
+                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <path d="M7 12l5 5l-1.5 1.5a3.536 3.536 0 1 1 -5 -5l1.5 -1.5z"></path>
+                  <path d="M17 12l-5 -5l1.5 -1.5a3.536 3.536 0 1 1 5 5l-1.5 1.5z"></path>
+                  <path d="M3 21l2.5 -2.5"></path>
+                  <path d="M18.5 5.5l2.5 -2.5"></path>
+                  <path d="M10 11l-2 2"></path>
+                  <path d="M13 14l-2 2"></path>
                 </svg>
-                Tambah Karyawan
+                Employee Register
               </a>
             </div>
           </div>
@@ -71,7 +66,8 @@ export default {
                     <tr v-for="item in pegawai_datas">
                       <td data-label="Name">
                         <div class="d-flex py-1 align-items-center"><span
-                            style="background-image: url(./static/avatars/010m.jpg);" class="avatar me-2">{{item.id}}</span>
+                            style="background-image: url(./static/avatars/010m.jpg);"
+                            class="avatar me-2">{{item.id}}</span>
                           <div class="flex-fill">
                             <div class="font-weight-medium">{{item.first_name}} {{item.last_name}}</div>
                             <div class="text-muted"><a class="text-reset" href="#"></a></div>
@@ -88,7 +84,8 @@ export default {
                             href="/dashboard/pipeline?project_id=3">Analisa</a>
                           <div class="dropdown"><button class="btn dropdown-toggle align-text-top"
                               data-bs-toggle="dropdown">Actions</button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"  :href="'/admin/grup-manajemen/pegawai/'+item.id+'/view'">Edit</a> <a
+                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
+                                :href="'/admin/grup-manajemen/pegawai/'+item.id+'/view'">Edit</a> <a
                                 class="dropdown-item" href="#">Suspend</a></div>
                           </div>
                         </div>

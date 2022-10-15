@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue'
+import Middleware from './middleware/Middleware';
 
 declare global {
   interface Window {
@@ -49,12 +50,13 @@ import AuthService from './services/AuthService';
 import PortalSelected from './portal_selected/PortalSelected.vue';
 
 // Operasional Pegawai
-import OperasionalPegawaiPegawai from './operasional_pegawai/pegawai/Pegawai.vue';
-import OperasionalPegawaiJabatan from './operasional_pegawai/jabatan/Jabatan.vue';
-import OperasionalPegawaiKehadiran from './operasional_pegawai/kehadiran/Kehadiran.vue';
-import OperasionalPegawaiMutasi from './operasional_pegawai/mutasi/Mutasi.vue';
+import OperasionalPegawaiPegawai from './employee_operational/employee/Pegawai.vue';
+import OperationalPegawaiPegawaiNew from './employee_operational/employee/PegawaiFNew.vue';
+
+import OperasionalPegawaiJabatan from './employee_operational/position/Jabatan.vue';
+import OperasionalPegawaiKehadiran from './employee_operational/attendance/Kehadiran.vue';
+import OperasionalPegawaiMutasi from './employee_operational/muation/Mutasi.vue';
 import CompanyCheckMiddleware from './middleware/CompanyCheckMiddleware';
-import Middleware from './middleware/Middleware';
 
 // Grup akses
 import GroupAccessGroup from './group_access/privilege/Group.vue';
@@ -92,6 +94,12 @@ const routes = [
   {
     path: '/operasional-pegawai/pegawai',
     component: OperasionalPegawaiPegawai,
+    name: "operasional.pegawai",
+    beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
+  },
+  {
+    path: '/operasional-pegawai/pegawai/new',
+    component: OperationalPegawaiPegawaiNew,
     name: "operasional.pegawai",
     beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
   },

@@ -1,7 +1,6 @@
 <script lang="ts">
 import { EmployeeInterface } from 'src/services/EmployeeService';
 import { ref } from 'vue';
-import AddPegawai from './functions/AddPegawai';
 
 let form_data = ref<EmployeeInterface>({
   id: 0,
