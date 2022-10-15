@@ -1,6 +1,7 @@
 import axios from "axios";
 import SmartUrlSearchParams from "src/functions/SmartUrlSearchParams";
 import BaseService from "./BaseService";
+import { PortalInterface } from "./PortalService";
 
 export interface GroupInterface {
   id?: number
@@ -13,6 +14,18 @@ export interface GroupInterface {
 
 export interface GroupServiceInterface extends GroupInterface {
 
+}
+
+export interface PortalGroupInterface {
+  data?: any
+  gm_group_id?: number
+  group?: GroupInterface
+  id?: number
+  pg_portal_id?: number
+  portal?: PortalInterface
+  created_at?: any
+  updated_at?: any
+  selected?: any
 }
 
 const GroupService = {

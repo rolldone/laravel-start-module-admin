@@ -34,12 +34,30 @@ axios.interceptors.response.use(function (response) {
 });
 
 const ENDPOINT = import.meta.env.VITE_APP_API_BASE_URL || 'http://virtualbox.lan:8330/api'
+
+export interface BaseQueryInterface {
+  take?: number
+  skip?: number
+  where_date_field?: string
+  sort_option?: string
+  sort_field?: string
+  start?: string
+  end?: string
+  search?: string
+  join?: string
+  join_origin_id?: string
+  join_relation_id?: string
+}
+
 export default {
   AUTH: ENDPOINT + '/auth',
+  USER_ADMIN: ENDPOINT + "/user",
   PEGAWAI: ENDPOINT + "/employee",
   DIVISI: ENDPOINT + "/groupmanagement/division",
   POSITION: ENDPOINT + "/groupmanagement/position",
   COMPANY: ENDPOINT + "/groupmanagement/group",
-  PORTAL: ENDPOINT + "/groupmanagement/portal",
-  PORTAL_SELECTED: ENDPOINT + "groupmanagement/portal-selected"
+  PORTAL: ENDPOINT + "/portalgroup/portal",
+  PORTAL_SELECTED: ENDPOINT + "/portalgroup/portal-selected",
+  PRIVILEGE: ENDPOINT + "/privilege/m",
+  PRIVILEGE_ITEM: ENDPOINT + "/privilege/item"
 }

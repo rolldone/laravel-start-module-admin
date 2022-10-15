@@ -45,6 +45,9 @@ import ForgotPassword from './auth/ForgotPassword.vue';
 import Dashboard from './dashboard/Dashboard.vue';
 import AuthService from './services/AuthService';
 
+// Portal Selected
+import PortalSelected from './portal_selected/PortalSelected.vue';
+
 // Operasional Pegawai
 import OperasionalPegawaiPegawai from './operasional_pegawai/pegawai/Pegawai.vue';
 import OperasionalPegawaiJabatan from './operasional_pegawai/jabatan/Jabatan.vue';
@@ -54,8 +57,12 @@ import CompanyCheckMiddleware from './middleware/CompanyCheckMiddleware';
 import Middleware from './middleware/Middleware';
 
 // Grup akses
-import UserPortals from './grup_akses/user_portal/UserPortals.vue';
-import UserPortalFNew from './grup_akses/user_portal/UserPortalFNew.vue';
+import GroupAccessGroup from './group_access/privilege/Group.vue';
+import GroupAccessGroupNew from './group_access/privilege/GroupFNew.vue';
+import GroupAccessGroupUpdate from './group_access/privilege/GroupFUpdate.vue';
+import UserPortals from './group_access/portal/UserPortals.vue';
+import UserPortalFNew from './group_access/portal/UserPortalFNew.vue';
+import UserPortalFUpdate from './group_access/portal/UserPortalFUpdate.vue';
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -86,9 +93,7 @@ const routes = [
     path: '/operasional-pegawai/pegawai',
     component: OperasionalPegawaiPegawai,
     name: "operasional.pegawai",
-    meta: {
-      middleware: []
-    }
+    beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
   },
   {
     path: '/operasional-pegawai/jabatan',
@@ -96,19 +101,48 @@ const routes = [
     name: "operasional.jabatan",
     beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
   },
-
+  {
+    path: "/portal/selected",
+    component: PortalSelected,
+    name: "portal.selected",
+    beforeEnter: Middleware.bind(this, [])
+  },
   // Grup AKses
   {
-    path: '/grup-akses/user-portal',
-    component: UserPortals,
-    name: "grup_akses.user_portal.portals",
-    beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
+    path: '/group-access/group/:id/view',
+    component: GroupAccessGroupUpdate,
+    name: "group_access.group.update",
+    beforeEnter: Middleware.bind(this, [])
   },
   {
-    path: '/grup-akses/user-portal/new',
+    path: '/group-access/group/new',
+    component: GroupAccessGroupNew,
+    name: "group_access.group.new",
+    beforeEnter: Middleware.bind(this, [])
+  },
+  {
+    path: '/group-access/group',
+    component: GroupAccessGroup,
+    name: "group_access.group.groups",
+    beforeEnter: Middleware.bind(this, [])
+  },
+  {
+    path: '/group-access/portal',
+    component: UserPortals,
+    name: "group_access.portal.portals",
+    beforeEnter: Middleware.bind(this, [])
+  },
+  {
+    path: '/group-access/portal/new',
     component: UserPortalFNew,
-    name: "grup_akses.user_portal.new",
-    beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
+    name: "group_access.user_portal.new",
+    beforeEnter: Middleware.bind(this, [])
+  },
+  {
+    path: '/group-access/portal/:id/view',
+    component: UserPortalFUpdate,
+    name: "group_access.user_portal.update",
+    beforeEnter: Middleware.bind(this, [])
   }
 ]
 

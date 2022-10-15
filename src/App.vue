@@ -61,7 +61,7 @@ export default {
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/admin">
+                <a class="nav-link" href="/admin/portal/selected">
                   <span class="nav-link-icon d-md-none d-lg-inline-block">
                     <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
@@ -201,20 +201,17 @@ export default {
                     </svg>
                   </span>
                   <span class="nav-link-title">
-                    Group Akses
+                    Role & Permission
                   </span>
                 </a>
                 <div class="dropdown-menu" data-bs-popper="none">
                   <div class="dropdown-menu-columns">
                     <div class="dropdown-menu-column">
-                      <a class="dropdown-item" href="#">
-                        Jabatan Akses
+                      <a class="dropdown-item" href="/admin/group-access/group">
+                        Group Access
                       </a>
-                      <a class="dropdown-item" href="#">
-                        Pengguna Akses
-                      </a>
-                      <a class="dropdown-item" href="/admin/grup-akses/user-portal">
-                        User Portal Akses
+                      <a class="dropdown-item" href="/admin/group-access/portal">
+                        Portal Access
                       </a>
                     </div>
                   </div>

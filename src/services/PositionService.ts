@@ -1,6 +1,6 @@
 import axios from "axios"
 import SmartUrlSearchParams from "src/functions/SmartUrlSearchParams"
-import BaseService from "./BaseService"
+import BaseService, { BaseQueryInterface } from "./BaseService"
 
 export interface PositionInterface {
   id?: number
@@ -11,9 +11,13 @@ export interface PositionInterface {
   created_at?: any
   updated_at?: any
   deleted_at?: any
+
+  // relation
+  pv_privilege_id?: number
+  pg_portal_id?: number
 }
 
-export interface PositionServiceInterface extends PositionInterface {
+export interface PositionServiceInterface extends BaseQueryInterface, PositionInterface {
 
 }
 

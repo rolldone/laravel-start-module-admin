@@ -1,21 +1,29 @@
 import axios from "axios";
 import BaseService from "./BaseService";
 
-export interface UserPortalSelectedInterface {
-
+export interface PortalSelectedInterface {
+  id?: number
+  user_id?: number
+  pg_portal_id?: number
+  pg_portal_group_id?: number
+  created_at?: any
+  updated_at?: any
 }
 
-export interface UserPortalSelectedServiceInterface extends UserPortalSelectedInterface {
+export interface PortalSelectedServiceInterface extends PortalSelectedInterface {
 
 }
 
 const PortalSelectedService = {
-  async add(props: UserPortalSelectedInterface) {
+  async joinGroup(pg_portal_id: number, pg_portal_group_id: number) {
     try {
       let resData = await axios({
         method: "post",
         url: BaseService.PORTAL_SELECTED + '/add',
-        data: props,
+        data: {
+          pg_portal_group_id,
+          pg_portal_id
+        },
         headers: {
           // 'Content-Type': `multipart/form-data;`,
         }
@@ -25,7 +33,7 @@ const PortalSelectedService = {
       throw ex;
     }
   },
-  async update(props: UserPortalSelectedInterface) {
+  async update(props: PortalSelectedInterface) {
     try {
       let resData = await axios({
         method: "post",
@@ -40,7 +48,7 @@ const PortalSelectedService = {
       throw ex;
     }
   },
-  async getCurrent(id: number) {
+  async getCurrent() {
     try {
       let resData = await axios({
         method: "GET",

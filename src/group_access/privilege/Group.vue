@@ -1,8 +1,8 @@
 <script lang="ts">
 import SafeJson from 'src/functions/SafeJson';
-import PortalService from 'src/services/PortalService'
+import PrivilegeService from 'src/services/PrivilegeService';
 interface DataObject {
-  user_portal_datas: Array<any>
+  group_datas: Array<any>
   select_group_type: string
 }
 export default {
@@ -13,25 +13,28 @@ export default {
   },
   data(): DataObject {
     return {
-      user_portal_datas: [],
+      group_datas: [],
       select_group_type: "employee"
     }
   },
-  async mounted() {
-    this.setUserPortals(await this.getUserPortals());
+  mounted() {
+    this.baseMounted();
   },
   methods: {
-    async getUserPortals() {
+    async baseMounted() {
+      this.setPrivileges(await this.getPrivileges());
+    },
+    async getPrivileges() {
       try {
-        let resData = await PortalService.getsByGMTableName(this.select_group_type);
+        let resData = await PrivilegeService.gets({});
         return resData;
       } catch (ex) {
-        console.error("getUserPortals - ex :: ", ex);
+        console.error("getPrivileges - ex :: ", ex);
       }
     },
-    setUserPortals(props: any) {
+    setPrivileges(props: any) {
       if (props == null) return;
-      this.user_portal_datas = props.return;
+      this.group_datas = props.return;
     },
     handleClick(action: string, props: any, e: any) {
       switch (action) {
@@ -49,28 +52,28 @@ export default {
       <div class="page-header d-print-none">
         <div class="row g-2 align-items-center">
           <div class="col">
-            <div class="page-pretitle">Grup Akses</div>
-            <h2 class="page-title">User Portals</h2>
+            <div class="page-pretitle">Access and role</div>
+            <h2 class="page-title">Group Akses</h2>
           </div>
           <div class="col-12 col-md-auto ms-auto d-print-none">
             <div class="btn-list">
               <span class="d-none d-sm-inline">
                 <!-- <a class="btn btn-white" href="/dashboard/pipeline">Manage Pipelines</a> -->
               </span>
-             <!--  <a class="btn btn-primary d-none d-sm-inline-block" href="/admin/grup-manajemen/divisi/new">
+              <a class="btn btn-primary d-none d-sm-inline-block" href="/admin/group-access/group/new">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                   stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                   <line x1="12" y1="5" x2="12" y2="19"></line>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg> Tambah Divisi </a> -->
-              <div class="dropdown">
+                </svg> Add Group </a>
+              <!--  <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  Add ? 
+                  Add Portal
                 </button>
                 <div class="dropdown-menu dropdown-menu-demo dropdown-menu-arrow">
-                  <a class="dropdown-item" href="/admin/grup-akses/user-portal/new?type=employee">
+                  <a class="dropdown-item" href="/admin/group-access/user-portal/new?type=employee">
                     Employee
                   </a>
                   <a class="dropdown-item" href="#">
@@ -80,7 +83,7 @@ export default {
                     Division
                   </a>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -102,7 +105,7 @@ export default {
               </div>
             </div>
           </div> -->
-          <div class="col-12">
+          <!-- <div class="col-12">
             <div class="mb-1" style="width:400px;">
               <div class="btn-group w-100" style="background-color: white;">
                 <button type="button" class="btn" v-bind:class="select_group_type=='employee'?'btn-primary':null"
@@ -113,7 +116,7 @@ export default {
                   v-on:click="handleClick('SELECT_GRUP_TYPE','division',$event)">Division</button>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="col-12">
             <div class="card">
               <div class="table-responsive">
@@ -121,13 +124,13 @@ export default {
                   <thead>
                     <tr>
                       <th>Nama</th>
-                      <th>Parent</th>
+                      <th>Total</th>
                       <th>Status</th>
                       <th class="w-1"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="item in user_portal_datas">
+                    <tr v-for="item in group_datas">
                       <td data-label="Name">
                         <div class="d-flex py-1 align-items-center">
                           <span style="background-image: url(./static/avatars/010m.jpg);"
@@ -141,19 +144,19 @@ export default {
                         </div>
                       </td>
                       <td data-label="Title">
-                        <div>{{SafeJson(item.parent_division,"name","-")}}</div>
+                        <div>{{SafeJson(item,"portals_groups",[]).length}}</div>
                         <div class="text-muted"></div>
                       </td>
-                      <td class="text-muted" data-label="Role">{{item.is_enable==true?"Active":"Suspend"}}</td>
+                      <td class="text-muted" data-label="Role">{{item.is_enabled==true?"Active":"Suspend"}}</td>
                       <td>
                         <div class="btn-list flex-nowrap">
-                          <a class="btn" href="/dashboard/pipeline?project_id=3">Sub Divisi</a>
+                          <!-- <a class="btn" href="/dashboard/pipeline?project_id=3">Sub Divisi</a> -->
                           <div class="dropdown">
                             <button class="btn dropdown-toggle align-text-top"
                               data-bs-toggle="dropdown">Actions</button>
                             <div class="dropdown-menu dropdown-menu-end">
-                              <a class="dropdown-item" :href="'/admin/grup-manajemen/divisi/'+item.id+'/view'">Edit</a>
-                              <a class="dropdown-item" href="#">Suspend</a>
+                              <a class="dropdown-item" :href="'/admin/group-access/group/'+item.id+'/view'">Edit</a>
+                              <!-- <a class="dropdown-item" href="#">Suspend</a> -->
                             </div>
                           </div>
                         </div>
