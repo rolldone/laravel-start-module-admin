@@ -66,6 +66,8 @@ import UserPortals from './group_access/portal/UserPortals.vue';
 import UserPortalFNew from './group_access/portal/UserPortalFNew.vue';
 import UserPortalFUpdate from './group_access/portal/UserPortalFUpdate.vue';
 
+import UserSelf from './user/Self.vue';
+
 // 2. Define some routes
 // Each route should map to a component.
 // We'll talk about nested routes later.
@@ -89,6 +91,9 @@ const routes = [
   { path: '/group-management/group', component: Group },
   { path: '/group-management/group/new', component: GroupFNew },
   { path: '/group-management/group/:id/view', component: GroupFUpdate },
+
+  
+  { path: '/user/self', component: UserSelf },
 
   // Operasional Pegawai
   {

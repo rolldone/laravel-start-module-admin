@@ -64,12 +64,12 @@ export default {
                 <a class="nav-link" href="/admin/portal/selected">
                   <span class="nav-link-icon d-md-none d-lg-inline-block">
                     <!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linktree"
+                      width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
-                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                      <path d="M9 3l-7 12h3v5h5v-5h-2l4 -7z"></path>
+                      <path d="M15 3l7 12h-3v5h-5v-5h2l-4 -7z"></path>
                     </svg>
                   </span>
                   <span class="nav-link-title">
@@ -78,11 +78,10 @@ export default {
                 </a>
               </li>
 
-              <li class="nav-item dropdown">
+              <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
                   data-bs-auto-close="false" role="button" aria-expanded="true">
                   <span class="nav-link-icon d-md-none d-lg-inline-block">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/star -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                       <desc>Download more icon variants from https://tabler-icons.io/i/star</desc>
@@ -105,19 +104,22 @@ export default {
                     </div>
                   </div>
                 </div>
-              </li>
+              </li> -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
                   data-bs-auto-close="false" role="button" aria-expanded="true">
                   <span class="nav-link-icon d-md-none d-lg-inline-block">
                     <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <desc>Download more icon variants from https://tabler-icons.io/i/star</desc>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-ubuntu" width="24"
+                      height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <circle cx="12" cy="5" r="2"></circle>
                       <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                        d="M17.723 7.41a7.992 7.992 0 0 0 -3.74 -2.162m-3.971 0a7.993 7.993 0 0 0 -3.789 2.216m-1.881 3.215a8 8 0 0 0 -.342 2.32c0 .738 .1 1.453 .287 2.132m1.96 3.428a7.993 7.993 0 0 0 3.759 2.19m3.998 -.003a7.993 7.993 0 0 0 3.747 -2.186m1.962 -3.43a8.008 8.008 0 0 0 .287 -2.131c0 -.764 -.107 -1.503 -.307 -2.203">
                       </path>
+                      <circle cx="5" cy="17" r="2"></circle>
+                      <circle cx="19" cy="17" r="2"></circle>
                     </svg>
                   </span>
                   <span class="nav-link-title">
@@ -145,12 +147,14 @@ export default {
                   data-bs-auto-close="false" role="button" aria-expanded="true">
                   <span class="nav-link-icon d-md-none d-lg-inline-block">
                     <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <desc>Download more icon variants from https://tabler-icons.io/i/star</desc>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-new-section" width="24"
+                      height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <line x1="9" y1="12" x2="15" y2="12"></line>
+                      <line x1="12" y1="9" x2="12" y2="15"></line>
                       <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                        d="M4 6v-1a1 1 0 0 1 1 -1h1m5 0h2m5 0h1a1 1 0 0 1 1 1v1m0 5v2m0 5v1a1 1 0 0 1 -1 1h-1m-5 0h-2m-5 0h-1a1 1 0 0 1 -1 -1v-1m0 -5v-2m0 -5">
                       </path>
                     </svg>
                   </span>
@@ -188,13 +192,19 @@ export default {
                   data-bs-auto-close="false" role="button" aria-expanded="true">
                   <span class="nav-link-icon d-md-none d-lg-inline-block">
                     <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <desc>Download more icon variants from https://tabler-icons.io/i/star</desc>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wall" width="24"
+                      height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path
-                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                      </path>
+                      <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                      <path d="M4 8h16"></path>
+                      <path d="M20 12h-16"></path>
+                      <path d="M4 16h16"></path>
+                      <path d="M9 4v4"></path>
+                      <path d="M14 8v4"></path>
+                      <path d="M8 12v4"></path>
+                      <path d="M16 12v4"></path>
+                      <path d="M11 16v4"></path>
                     </svg>
                   </span>
                   <span class="nav-link-title">
@@ -249,6 +259,25 @@ export default {
                   </span>
                   <span class="nav-link-title">
                     Changelog
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/user/self">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-search" width="24"
+                      height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                      <path d="M6 21v-2a4 4 0 0 1 4 -4h1"></path>
+                      <circle cx="16.5" cy="17.5" r="2.5"></circle>
+                      <path d="M18.5 19.5l2.5 2.5"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    My Profile
                   </span>
                 </a>
               </li>
