@@ -57,6 +57,21 @@ const AuthService = {
       throw ex;
     }
   },
+  async registerWithoutPassword(props: AuthInterface) {
+    try {
+      let resData = await axios({
+        method: "post",
+        url: BaseService.AUTH + '/register-without-password',
+        data: props,
+        headers: {
+          // 'Content-Type': `multipart/form-data;`,
+        }
+      })
+      return resData.data;
+    } catch (ex) {
+      throw ex;
+    }
+  },
 }
 
 export default AuthService;

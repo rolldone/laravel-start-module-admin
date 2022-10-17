@@ -59,5 +59,6 @@ export default {
   PORTAL: ENDPOINT + "/portalgroup/portal",
   PORTAL_SELECTED: ENDPOINT + "/portalgroup/portal-selected",
   PRIVILEGE: ENDPOINT + "/privilege/m",
-  PRIVILEGE_ITEM: ENDPOINT + "/privilege/item"
+  PRIVILEGE_ITEM: ENDPOINT + "/privilege/item",
+  DASHBOARD: ENDPOINT + "/dashboard"
 }

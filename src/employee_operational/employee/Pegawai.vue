@@ -1,14 +1,42 @@
 <script lang="ts">
+import DashboardService from 'src/services/DashboardService';
 import { EmployeeInterface } from 'src/services/EmployeeService';
+import UserGroupPositionService, { UserGroupPositionServiceInteface } from 'src/services/UserGroupPositionService';
 import { onMounted, ref } from 'vue';
+import SafeJson from 'src/functions/SafeJson';
 
 interface DataObject {
-  pegawai_datas: Array<EmployeeInterface>
+  upg_datas: Array<UserGroupPositionServiceInteface>
 }
 export default {
+  setup() {
+    return {
+      SafeJson
+    }
+  },
   data(): DataObject {
     return {
-      pegawai_datas: []
+      upg_datas: []
+    }
+  },
+  mounted() {
+    this.baseMounted();
+  },
+  methods: {
+    async baseMounted() {
+      this.setUPGS(await this.getUPGS());
+    },
+    async getUPGS() {
+      try {
+        let resData = await DashboardService.employee.getsUPG_ByCurrentGroup({});
+        return resData
+      } catch (ex) {
+        console.error("getUPGS - ex :: ", ex);
+      }
+    },
+    setUPGS(props: any) {
+      if (props == null) return;
+      this.upg_datas = props.return;
     }
   }
 }
@@ -28,7 +56,7 @@ export default {
               <!-- <span class="d-none d-sm-inline">
                 <a class="btn btn-white" href="/dashboard/pipeline">Manage Pipelines</a>
               </span> -->
-              <a class="btn btn-primary d-none d-sm-inline-block" href="/operasional-pegawai/pegawai/new">
+              <a class="btn btn-primary d-none d-sm-inline-block" href="/operational-employee/employee/new">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plug-connected" width="24"
                   height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                   stroke-linecap="round" stroke-linejoin="round">
@@ -63,29 +91,30 @@ export default {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="item in pegawai_datas">
+                    <tr v-for="item in upg_datas">
                       <td data-label="Name">
                         <div class="d-flex py-1 align-items-center"><span
                             style="background-image: url(./static/avatars/010m.jpg);"
                             class="avatar me-2">{{item.id}}</span>
                           <div class="flex-fill">
-                            <div class="font-weight-medium">{{item.first_name}} {{item.last_name}}</div>
+                            <div class="font-weight-medium">{{SafeJson(item.employee,'first_name','')}}
+                              {{SafeJson(item.employee,'last_name','')}}</div>
                             <div class="text-muted"><a class="text-reset" href="#"></a></div>
                           </div>
                         </div>
                       </td>
                       <td data-label="Title">
-                        <div>{{item.email}}</div>
-                        <div class="text-muted">{{item.phone_number}}</div>
+                        <div>{{SafeJson(item.employee,'email','')}}</div>
+                        <div class="text-muted">{{SafeJson(item.employee,'phone_number','')}}</div>
                       </td>
-                      <td class="text-muted" data-label="Role">{{item.status == 1 ?"Active":"Suspend"}}</td>
+                      <td class="text-muted" data-label="Role">{{item.is_enabled == true ?"Active":"Suspend"}}</td>
                       <td>
                         <div class="btn-list flex-nowrap"><a class="btn"
                             href="/dashboard/pipeline?project_id=3">Analisa</a>
                           <div class="dropdown"><button class="btn dropdown-toggle align-text-top"
                               data-bs-toggle="dropdown">Actions</button>
                             <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
-                                :href="'/admin/grup-manajemen/pegawai/'+item.id+'/view'">Edit</a> <a
+                                :href="'/admin/operational-employee/employee/new?upg_id='+item.id">Edit</a> <a
                                 class="dropdown-item" href="#">Suspend</a></div>
                           </div>
                         </div>

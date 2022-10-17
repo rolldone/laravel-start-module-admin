@@ -52,7 +52,7 @@ const PortalSelectedService = {
     try {
       let resData = await axios({
         method: "GET",
-        url: `${BaseService.PORTAL_SELECTED}/current`
+        url: `${BaseService.PORTAL_SELECTED}/current/group`
       });
       return resData.data;
     } catch (ex) {

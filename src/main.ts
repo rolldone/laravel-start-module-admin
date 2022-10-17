@@ -51,7 +51,7 @@ import PortalSelected from './portal_selected/PortalSelected.vue';
 
 // Operasional Pegawai
 import OperasionalPegawaiPegawai from './employee_operational/employee/Pegawai.vue';
-import OperationalPegawaiPegawaiNew from './employee_operational/employee/PegawaiFNew.vue';
+import OperationalPegawaiPegawaiRegister from './employee_operational/employee/PegawaiFRegister.vue';
 
 import OperasionalPegawaiJabatan from './employee_operational/position/Jabatan.vue';
 import OperasionalPegawaiKehadiran from './employee_operational/attendance/Kehadiran.vue';
@@ -77,30 +77,30 @@ const routes = [
   { path: '/auth/forgot-password', component: ForgotPassword },
 
   // Grup Manajemen
-  { path: '/grup-manajemen/pegawai', component: Pegawai },
-  { path: '/grup-manajemen/pegawai/new', component: PegawaiFNew },
-  { path: '/grup-manajemen/pegawai/:id/view', component: PegawaiFUpdate },
-  { path: '/grup-manajemen/jabatan', component: Jabatan },
-  { path: '/grup-manajemen/jabatan/new', component: JabatanFNew },
-  { path: '/grup-manajemen/jabatan/:id/view', component: JabatanFUpdate },
-  { path: '/grup-manajemen/divisi', component: Divisi },
-  { path: '/grup-manajemen/divisi/new', component: DivisiFNew },
-  { path: '/grup-manajemen/divisi/:id/view', component: DivisiFUpdate },
-  { path: '/grup-manajemen/group', component: Group },
-  { path: '/grup-manajemen/group/new', component: GroupFNew },
-  { path: '/grup-manajemen/group/:id/view', component: GroupFUpdate },
+  { path: '/group-management/pegawai', component: Pegawai },
+  { path: '/group-management/pegawai/new', component: PegawaiFNew },
+  { path: '/group-management/pegawai/:id/view', component: PegawaiFUpdate },
+  { path: '/group-management/jabatan', component: Jabatan },
+  { path: '/group-management/jabatan/new', component: JabatanFNew },
+  { path: '/group-management/jabatan/:id/view', component: JabatanFUpdate },
+  { path: '/group-management/divisi', component: Divisi },
+  { path: '/group-management/divisi/new', component: DivisiFNew },
+  { path: '/group-management/divisi/:id/view', component: DivisiFUpdate },
+  { path: '/group-management/group', component: Group },
+  { path: '/group-management/group/new', component: GroupFNew },
+  { path: '/group-management/group/:id/view', component: GroupFUpdate },
 
   // Operasional Pegawai
   {
-    path: '/operasional-pegawai/pegawai',
+    path: '/operational-employee/employee',
     component: OperasionalPegawaiPegawai,
-    name: "operasional.pegawai",
+    name: "operational.employee.employees",
     beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
   },
   {
-    path: '/operasional-pegawai/pegawai/new',
-    component: OperationalPegawaiPegawaiNew,
-    name: "operasional.pegawai",
+    path: '/operational-employee/employee/new',
+    component: OperationalPegawaiPegawaiRegister,
+    name: "operational.employee.new",
     beforeEnter: Middleware.bind(this, [CompanyCheckMiddleware])
   },
   {

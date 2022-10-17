@@ -127,11 +127,8 @@ export default {
                 <div class="dropdown-menu" data-bs-popper="none">
                   <div class="dropdown-menu-columns">
                     <div class="dropdown-menu-column">
-                      <a class="dropdown-item" href="/admin/operasional-pegawai/pegawai">
+                      <a class="dropdown-item" href="/admin/operational-employee/employee">
                         Pegawai
-                      </a>
-                      <a class="dropdown-item" href="/admin/operasional-pegawai/jabatan">
-                        Jabatan
                       </a>
                       <a class="dropdown-item" href="/admin/operasional-pegawai/kehadiran">
                         Kehadiran
@@ -170,17 +167,17 @@ export default {
                       <!-- <a class="dropdown-item" href="/dashboard/group">
                     Groups Roles
                   </a> -->
-                      <a class="dropdown-item" href="/admin/grup-manajemen/pegawai">
-                        Pegawai
+                      <a class="dropdown-item" href="/admin/group-management/pegawai">
+                        Peoples
                       </a>
-                      <a class="dropdown-item" href="/admin/grup-manajemen/divisi">
-                        Divisi
+                      <a class="dropdown-item" href="/admin/group-management/divisi">
+                        Division
                       </a>
-                      <a class="dropdown-item" href="/admin/grup-manajemen/jabatan">
-                        Jabatan
+                      <a class="dropdown-item" href="/admin/group-management/jabatan">
+                        Position
                       </a>
-                      <a class="dropdown-item" href="/admin/grup-manajemen/group">
-                        Grup Perusahaan
+                      <a class="dropdown-item" href="/admin/group-management/group">
+                        Company Group
                       </a>
                     </div>
                   </div>

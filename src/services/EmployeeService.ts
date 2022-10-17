@@ -24,9 +24,10 @@ export interface EmployeeInterface {
 
 export interface EmployeeServiceInterface extends EmployeeInterface {
   group_id?: number
+  search?: string
 }
 
-const PegawaiService = {
+const EmployeeService = {
   STATUS,
   async add(props: EmployeeInterface) {
     try {
@@ -79,15 +80,6 @@ const PegawaiService = {
       throw ex;
     }
   },
-  async getsByGroupId(group_id: number) {
-    try {
-      return this.gets({
-        group_id: group_id
-      });
-    } catch (ex) {
-      throw ex;
-    }
-  },
   async deleteByIds(ids: Array<number>) {
     try {
       let resData = await axios({
@@ -104,4 +96,4 @@ const PegawaiService = {
   }
 }
 
-export default PegawaiService;
+export default EmployeeService;

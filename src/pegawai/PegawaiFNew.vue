@@ -48,7 +48,7 @@ export default {
           </div>
           <div class="col-12 col-md-auto ms-auto d-print-none">
             <div class="btn-list">
-              <a class="btn btn-primary d-none d-sm-inline-block" href="/admin/grup-manajemen/pegawai">
+              <a class="btn btn-primary d-none d-sm-inline-block" href="/admin/group-management/pegawai">
                 <svg class="icon icon-tabler icon-tabler-corner-up-left" xmlns="http://www.w3.org/2000/svg" width="24"
                   height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                   stroke-linecap="round" stroke-linejoin="round">

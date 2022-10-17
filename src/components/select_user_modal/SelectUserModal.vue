@@ -108,8 +108,8 @@ export default {
               </div>
             </div>
             <div class="list-group list-group-flush overflow-auto" style="max-height: 35rem">
-              <div class="list-group-item">
-                <div class="row" v-for="item in user_datas">
+              <div class="list-group-item"  v-for="item in user_datas">
+                <div class="row">
                   <div class="col-auto">
                     <a href="#">
                       <span class="avatar" style="background-image: url(./static/avatars/023f.jpg)"></span>
@@ -131,7 +131,7 @@ export default {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+          <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button> -->
         </div>
       </div>
     </div>

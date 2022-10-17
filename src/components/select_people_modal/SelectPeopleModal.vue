@@ -1,21 +1,23 @@
 <script lang="ts">
 import { debounce, DebouncedFunc } from 'lodash';
 import CreateSimpleId from 'src/functions/CreateSimpleId';
-import PositionService, { PositionInterface } from 'src/services/PositionService';
-import { defineComponent } from 'vue';
+import EmployeeService, { EmployeeInterface } from 'src/services/EmployeeService';
+
 interface DataObject {
-  position_datas: Array<PositionInterface>
-  search_text: string
+  employee_datas: Array<EmployeeInterface>
   id: string
+  search_text: string
   pendingSearch?: DebouncedFunc<any> | null
 }
+
 let myModal: any = null;
-export default defineComponent({
+
+export default {
   props: ["onlistener"],
   data(): DataObject {
     return {
-      position_datas: [],
       search_text: "",
+      employee_datas: [],
       id: CreateSimpleId(10),
       pendingSearch: null
     }
@@ -29,15 +31,13 @@ export default defineComponent({
         this.pendingSearch.cancel();
       }
       this.pendingSearch = debounce(async (data: string) => {
-        this.setPositionDatas(await this.getPositionDatas());
+        this.setEmployees(await this.getEmployees());
       }, 1000);
       this.pendingSearch(data);
     }
   },
   methods: {
-    baseMounted() {
-
-    },
+    async baseMounted() { },
     handleClick(action: string, props: any, e: any) {
       switch (action) {
         case 'SELECT':
@@ -61,34 +61,34 @@ export default defineComponent({
         if (event.target.id == _id_element) { }
       });
       myModal.show();
-      this.setPositionDatas(await this.getPositionDatas());
+      this.setEmployees(await this.getEmployees());
     },
     async hide() {
       myModal.hide();
     },
-    async getPositionDatas() {
+    async getEmployees() {
       try {
-        let resData = await PositionService.gets({
+        let users = await EmployeeService.gets({
           search: this.search_text
         });
-        return resData;
+        return users;
       } catch (ex) {
-        console.error("getPositionDatas - ex :: ", ex);
+        console.error("getEmployees - ex :: ", ex);
       }
     },
-    setPositionDatas(props: any) {
+    setEmployees(props: any) {
       if (props == null) return;
-      this.position_datas = props.return;
+      this.employee_datas = props.return;
     }
   }
-})
+}
 </script>
 <template>
   <div class="modal modal-blur fade" :id="id" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Select Positions</h5>
+          <h5 class="modal-title">Select Peoples</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -108,7 +108,7 @@ export default defineComponent({
               </div>
             </div>
             <div class="list-group list-group-flush overflow-auto" style="max-height: 35rem">
-              <div class="list-group-item" v-for="item in position_datas">
+              <div class="list-group-item" v-for="item in employee_datas">
                 <div class="row">
                   <div class="col-auto">
                     <a href="#">
@@ -116,8 +116,8 @@ export default defineComponent({
                     </a>
                   </div>
                   <div class="col text-truncate">
-                    <a href="#" class="text-body d-block">{{item.name}}</a>
-                    <div class="text-muted text-truncate mt-n1">{{item.division.name}} #{{item.id}}</div>
+                    <a href="#" class="text-body d-block">{{item.first_name}} {{item.last_name}}</a>
+                    <div class="text-muted text-truncate mt-n1">{{item.email}}(#{{item.id}})</div>
                   </div>
                   <div class="col-auto">
                     <a class="btn btn-blue w-100" v-on:click="handleClick('SELECT',{ item : item },$event)">
@@ -131,7 +131,7 @@ export default defineComponent({
         </div>
         <div class="modal-footer">
           <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-         <!--  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button> -->
+          <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button> -->
         </div>
       </div>
     </div>
