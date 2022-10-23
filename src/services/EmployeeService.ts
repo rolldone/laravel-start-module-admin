@@ -93,6 +93,17 @@ const EmployeeService = {
     } catch (ex) {
       throw ex;
     }
+  },
+  async getSelf() {
+    try {
+      let resData = await axios({
+        method: "GET",
+        url: `${BaseService.PEGAWAI}/self`,
+      });
+      return resData;
+    } catch (ex) {
+      throw ex;
+    }
   }
 }
 

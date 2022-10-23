@@ -7,6 +7,7 @@ export interface UserInterface {
   name?: string
   email?: string
   password?: string
+  password_confirm?: string
   created_at?: any
   updated_at?: any
   is_root?: boolean
@@ -25,8 +26,17 @@ const UserService = {
       throw ex;
     }
   },
-  update(props: UserInterface) {
-
+  async update(props: UserInterface) {
+    try {
+      let resData = await axios({
+        method: "POST",
+        url: `${BaseService.USER_ADMIN}/update`,
+        data: props
+      })
+      return resData.data;
+    } catch (ex) {
+      throw ex;
+    }
   },
   async gets(props: UserServiceInterface) {
     try {
@@ -42,6 +52,17 @@ const UserService = {
   },
   getById(id: number) {
 
+  },
+  async getSelf() {
+    try {
+      let resData = await axios({
+        method: 'GET',
+        url: `${BaseService.USER_ADMIN}/self`
+      });
+      return resData.data;
+    } catch (ex) {
+      throw ex;
+    }
   }
 }
 
